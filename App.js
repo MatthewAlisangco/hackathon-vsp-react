@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppRegistry, StyleSheet,Button, View, Text, TextInput, Image, Picker } from 'react-native';
+import { AppRegistry, StyleSheet,Button, View, Text, TextInput, Image, Picker, CheckBox } from 'react-native';
 import { createStackNavigator } from 'react-navigation'; // Version can be specified in package.json
 // import { DetailsScreen } from './views/DetailsScreen';
 // import {HomeScreen } from './views/HomeScreen';
@@ -11,7 +11,7 @@ class HomeScreen extends React.Component {
   render() {
     return (
       <View style={{flex: 1}}>
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', flex: 1, backgroundColor: '#8B3B96'}} >
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#8B3B96'}} >
         <Image style={{width: 300, height: 165}}  source={require('./vsp-logo.png')} />
         <Text></Text>
           </View>
@@ -52,52 +52,183 @@ class HomeScreen extends React.Component {
 class DetailsScreen extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { PickerSelection: "default value" };
+    this.state = { PickerSelection: "default value",
+                  typeofdoctor: "default value",
+                  gender: "default value",
+                  language: "default value",
+                  distance: "default value",
+                  usstate: "default value"
+   };
   }
   render() {
     return (
-      <View style={{flex: 1, backgroundColor:'#003046'}}>
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#8B3B96' }} >
+      <View style={{flex: 1, backgroundColor:'#003046',}}>
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#8B3B96', }} >
         
         <Text>Recommend a Doctor</Text>
-        </View>
 
 
 
-
-      <View style={{ flex: 2, alignItems: 'center', }}>
-        <Text>Details Screen</Text>
+        <View style={{ flex: 2, alignItems: 'center', justifyContent: 'center', flexDirection: 'row', marginVertical:200 }}>
+        
+        
+        
+        <Text style={{marginBottom:390, marginLeft: 20, marginRight:20 }}> Network: </Text> 
 
         <Picker
+       
           color='white'
           selectedValue={this.state.PickerSelection}
           onValueChange={(itemValue, ItemIndex) => this.setState({ PickerSelection: itemValue })}
-          style={{ width: 160 }}
+          style={{ marginBottom:590, width: 160, marginTop: 200}}
           mode="dropdown">
-          <Picker.Item label="News" value="News" />
-          <Picker.Item label="Design" value="Design" />
+          <Picker.Item label="Choice" value="Choice" />
+          <Picker.Item label="Signature" value="Signature" />
+          <Picker.Item label="Advantage" value="Advantage" />
+          <Picker.Item label="Medicaid" value="Medicaid" />
+
         </Picker>
 
-        <View style =  {{flexDirection: 'row'}}>
-        <Button color= '#003046'
-          title="Recommend Me"
-          onPress={() => this.props.navigation.navigate('Details')}
-        />
-        <Button color= '#003046'
-          title="Search Doctor"
-          onPress={() => this.props.navigation.navigate('Details')}
-        />
-        </View>
-    
- 
       </View>
 
-      
+      <View style={{ flex: 2, alignItems: 'center', justifyContent: 'center', flexDirection: 'row',}}>
+        <Text style={{marginBottom:700, marginLeft: 20, marginRight:20 }}> Type of Doctor: </Text> 
+        <Picker
+          color='white'
+          selectedValue={this.state.typeofdoctor}
+          onValueChange={(itemValue, ItemIndex) => this.setState({ typeofdoctor: itemValue })}
+          style={{ marginBottom:800, width: 160, marginTop: 100}}
+          mode="dropdown">
+          <Picker.Item label= "Optometrists" value="Optometrists" />
+          <Picker.Item label="ophthalmologist" value="ophthalmologist" />
+        </Picker>
       </View>
+
+
+      <View style={{ flex: 2, alignItems: 'center', justifyContent: 'center', flexDirection: 'row',}}>
+        <Text style={{marginBottom:600, marginLeft: 20, marginRight:20 }}> Gender </Text> 
+        <Picker
+          color='white'
+          selectedValue={this.state.gender}
+          onValueChange={(itemValue, ItemIndex) => this.setState({ gender: itemValue })}
+          style={{ marginBottom:700, width: 160, marginTop: 100}}
+          mode="dropdown">
+          <Picker.Item label= "male" value="male" />
+          <Picker.Item label="female" value="female" />
+        </Picker>
+      </View>
+
+
+      <View style={{ flex: 2, alignItems: 'center', justifyContent: 'center', flexDirection: 'row',}}>
+        <Text style={{marginBottom:800, marginLeft: 20, marginRight:20 }}> Preferred Language</Text> 
+        <Picker
+          color='white'
+          selectedValue={this.state.language}
+          onValueChange={(itemValue, ItemIndex) => this.setState({ language: itemValue })}
+          style={{ marginBottom:900, width: 160, marginTop: 100}}
+          mode="dropdown">
+          <Picker.Item label= "English" value="English" />
+          <Picker.Item label="Spanish" value="Spanish" />
+        </Picker>
+      </View>
+
+
+
+      <View style={{ flex: 2, alignItems: 'center', justifyContent: 'center', flexDirection: 'row',}}>
+        <Text style={{marginBottom:700, marginLeft: 20, marginRight:20 }}> Show results within</Text> 
+        <Picker
+          color='white'
+          selectedValue={this.state.distance}
+          onValueChange={(itemValue, ItemIndex) => this.setState({ distance: itemValue })}
+          style={{ marginBottom:800, width: 160, marginTop: 100}}
+          mode="dropdown">
+          <Picker.Item label= "5 miles" value="5" />
+          <Picker.Item label="25 miles" value="25" />
+          <Picker.Item label= "50 miles" value="50" />
+          <Picker.Item label="100 miles" value="100" />
+        </Picker>
+      </View>
+
+      <View style={{ flex: 2, alignItems: 'center', justifyContent: 'center', flexDirection: 'row',}}>
+        <Text style={{marginBottom:600, marginLeft: 20, marginRight:20 }}> State</Text> 
+        <Picker
+          color='white'
+          selectedValue={this.state.usstate}
+          onValueChange={(itemValue, ItemIndex) => this.setState({ usstate: itemValue })}
+          style={{ marginBottom:700, width: 160, marginTop: 100}}
+          mode="dropdown">
+          <Picker.Item label= "CA" value="CA" />
+          <Picker.Item label="AZ" value="AZ" />
+          <Picker.Item label= "NY" value="NY" />
+          <Picker.Item label="FL" value="FL" />
+        </Picker>
+      </View>
+
+
+      <View style={{ flex: 2, alignItems: 'center', justifyContent: 'center', flexDirection: 'row',}}>
+        <Text style={{marginBottom:550, marginLeft: 20, marginRight:20 }}> Zipcode </Text> 
+      <TextInput
+        style={{marginBottom:550, height: 20, width:100, alignItems: 'center', backgroundColor: 'white', borderColor: 'gray', borderWidth: 1}}
+        underlineColorAndroid = "transparent"
+        placeholder = " "
+      />
+         </View>
+
+
+
+         <View style={{ flex: 2, alignItems: 'center', justifyContent: 'center', flexDirection: 'row',}}>
+        <Text style={{marginBottom:350, marginLeft: 20, marginRight:20 }}> Eye Exam </Text> 
+      <CheckBox
+        style={{marginBottom:350,  alignItems: 'center', backgroundColor: 'white', borderColor: 'gray', borderWidth: 1}}
+        underlineColorAndroid = "transparent"
+        placeholder = " "
+      />
+         </View>
+
+         <View style={{ flex: 2, alignItems: 'center', justifyContent: 'center', flexDirection: 'row',}}>
+        <Text style={{marginBottom:250, marginLeft: 20, marginRight:20 }}> Extended Hours </Text> 
+      <CheckBox
+        style={{marginBottom:250,  alignItems: 'center', backgroundColor: 'white', borderColor: 'gray', borderWidth: 1}}
+        underlineColorAndroid = "transparent"
+        placeholder = " "
+      />
+         </View>
+
+
+        </View>
+
+
+
+
+
+
+
+
+      <Button color= '#003046'
+          title="Recommend Me"
+          onPress={() => this.props.navigation.navigate('RecommendDoctor')}
+        />
+
+    </View>
     );
   }
 }
 
+
+
+
+
+
+// <View style =  {{flexDirection: 'row'}}>
+// <Button color= '#003046'
+//   title="Recommend Me"
+//   onPress={() => this.props.navigation.navigate('Details')}
+// />
+// <Button color= '#003046'
+//   title="Search Doctor"
+//   onPress={() => this.props.navigation.navigate('Details')}
+// />
+// </View>
 
 
 
@@ -105,166 +236,63 @@ class DetailsScreen extends React.Component {
 class RecommendedDoctorScreen extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { PickerSelection: "default value" };
+    this.state = { PickerSelection: "default value",
+                   typeofdoctor: "default value",
+                   gender: "default value",
+                   Language: "default value" };
   }
   render() {
     return (
       <View style={{flex: 1, backgroundColor:'#003046'}}>
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#8B3B96' , marginBottom: 200}} >
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#8B3B96' }} >
         
-        <Text>Recommend a Doctor</Text>
+        <Text>Recommended Doctor</Text>
+        <View style={{ flex: 2, alignItems: 'center', justifyContent: 'center', flexDirection: 'row',}}>
+       <Image style={{width: 100, height: 100, marginRight: 5}}  source={require('./no-photo-graphic.png')} />
+        
+        </View>
+        </View>
+        <View style={{ flex: 2,  backgroundColor: 'white' }} >
+        <View style={{ flex: 2,  flexDirection: 'row',}}>
+        <Text style={{ marginRight: 10,}} >Service&Products
+       
+       </Text  >
+       <Text  style={{ marginRight: 10,}}>Map
+       
+       </Text>
+       <Text style={{ marginRight: 10,}} >Location 
+       
+       </Text>
+      
+       <Text style={{ marginRight: 20,}} >Special/Bonus Offers
+       
+       </Text>
+       </View>
+       <View style={{ flex: 3, alignItems: 'center', justifyContent: 'center', flexDirection: 'row',}}>
+
+<Text style={{marginBottom:350}} >Loading...
+</Text>
+</View> 
         </View>
 
+        
 
       </View>
     );
   }
 
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-const options = [
-  {
-    label: 'News'
-  },
-  {
-    label: 'Design'
-  },
-  {
-    label: 'Sales'
-  },
-  {
-    label: 'Marketing'
-  },
-  {
-    label: 'Customer Success'
-  }
-];
-
 
 const RootStack = createStackNavigator(
   {
     Home: HomeScreen,
     Details: DetailsScreen,
+    RecommendDoctor: RecommendedDoctorScreen 
   },
   {
     initialRouteName: 'Home',
   }
 );
-
-
-const styles = StyleSheet.create({
-  PinContainer: {
-    flex: 1,
-    alignSelf: 'stretch'
-  },
-  PinHeader: {
-    backgroundColor: 'white',
-    flexDirection: 'row',
-    alignItems: 'flex-end',
-    justifyContent: 'space-between',
-    flex: 1,
-    padding: 8
-  },
-  UtilityNav: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    flex: 1
-  },
-  PinButton: {
-    flexDirection: 'row',
-    backgroundColor: 'red',
-    padding: 8,
-    borderRadius: 6,
-    justifyContent: 'space-between',
-    width: 60
-  },
-  PinButtonText: {
-    color: 'white'
-  },
-  PinButtonContainer: {
-    flex: 1,
-    alignItems: 'flex-end'
-  },
-  PinContent: {
-    flex: 3,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingLeft: 8,
-    paddingRight: 8,
-    
-  },
-  ImagePlaceholder: {
-    backgroundColor: '#1e1e1e',
-    flex: 1,
-    alignSelf: 'stretch',
-    borderRadius: 6,
-  },
-  PinMeta: {
-    flex: 1,
-    flexDirection: 'row',
-    paddingTop: 16,
-    paddingRight: 8,
-    paddingBottom: 16,
-    paddingLeft: 8
-  },
-  PinMetaTextContainer: {
-
-  },
-  UtilityButton: {
-    backgroundColor: '#cecece',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  UtilityButtonText: {
-    color: 'black',
-    fontWeight: 'bold'
-  },
-  PinUser: {
-    flex: 5,
-    flexDirection: 'row',
-    paddingLeft: 8,
-    paddingRight: 8
-  },
-  PinUserAvatar: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    backgroundColor: 'black',
-    marginRight: 8
-  },
-  TextBold: {
-    fontWeight: 'bold'
-  }
-});
-
-
-
-
-
 
 
 export default class App extends React.Component {
